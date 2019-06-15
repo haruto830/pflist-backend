@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,6 +14,8 @@ func main() {
 			"message": "Hello World in Docker !",
 		})
 	})
+
+	router.StaticFS("/swagger", http.Dir("./static/swaggerui"))
 	router.Run(":8080")
 
 }
