@@ -1,0 +1,69 @@
+@startuml
+
+package "MySQL" as target_system <<Database>> {
+
+    entity "USERS" as users {
+        + USER_ID [PK]
+        --
+        USER_NAME
+        UID
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+       }
+
+    entity "PORTFOLIOS" as portfolios {
+        + PORTFOLIO_ID [PK]
+        --
+        # USER_ID [FK]
+        --
+        PORTFOLIO_NAME
+        PORTFOLIO_URL
+        REPOSITORY_URL
+        PORTFOLIO_OVERVIEW
+        APPEAL_POINT
+        NICE_COUNT
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "PORTFOLIOS_IMAGES" as portfolios_images {
+        + IMAGE_ID [PK]
+        --
+        # PORTFOLIO_ID [FK]
+        --
+        PORTFOLIO_IMAGE
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "PORTFOLIOS_SKILLS" as portfolios_skills {
+        + SKILL_ID [PK]
+        --
+        # SKILL_CD [FK]
+        # PORTFOLIO_ID [FK]
+        --
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "SKILLS_MASTERS" as skills_masters {
+        + SKILL_CD [PK]
+        --
+        SKILL_NAME
+        SKILL_CATEGORY
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+}
+
+portfolios }|-left- users
+portfolios -down-|{ portfolios_images
+portfolios -right-|{ portfolios_skills
+portfolios_skills -down- skills_masters
+
+@enduml
