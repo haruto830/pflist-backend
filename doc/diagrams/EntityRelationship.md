@@ -1,3 +1,8 @@
+## ER図
+- PlantUMLを使用してER図を作成しています。
+- ブラウザから図を確認する場合は、chromeの拡張機能 [Pegmatite](https://chrome.google.com/webstore/search/Pegmatite) をインストールしてください。
+
+```
 @startuml
 
 package "MySQL" as target_system <<Database>> {
@@ -67,3 +72,4 @@ portfolios -right-|{ portfolios_skills
 portfolios_skills -down- skills_masters
 
 @enduml
+```
