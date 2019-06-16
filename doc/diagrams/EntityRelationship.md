@@ -2,7 +2,7 @@
 - PlantUMLを使用してER図を作成しています。
 - ブラウザから図を確認する場合は、chromeの拡張機能 [Pegmatite](https://chrome.google.com/webstore/search/Pegmatite) をインストールしてください。
 
-```
+```uml
 @startuml
 
 package "MySQL" as target_system <<Database>> {
