@@ -73,13 +73,13 @@ package "database(MySQL)" as target_system <<Database>> {
         + NICE_ID [PK]
         --
         # USER_ID [FK]
+        # PORTFOLIO_ID [FK]
         --
-        PORTFOLIO_ID
         INSERT_DATA 
     }
 }
 
-users --right--|{ portfolios
+users --right--o{ portfolios
 users -down-o{ portfolios_nices
 portfolios --o{ portfolios_nices
 portfolios -down-|{ portfolios_images
