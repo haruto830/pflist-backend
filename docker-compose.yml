@@ -2,7 +2,27 @@ version: '3.7'
 services:
   app:
     build: ./app
+    container_name: app
     volumes:
       - ./app/:/go/src/app
     ports:
       - "8080:8080"
+
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: swagger-editor
+    ports:
+      - "8081:8080"
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./swagger.yaml:/usr/share/nginx/html/swagger.yaml
+    environment:
+      API_URL: swagger.yaml
+
+
+
