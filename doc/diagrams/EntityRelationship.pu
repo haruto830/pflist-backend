@@ -1,0 +1,90 @@
+@startuml EntityRelationship
+
+package "database(MySQL)" as target_system <<Database>> {
+
+    entity "USERS" as users {
+        + USER_ID [PK]
+        --
+        USER_NAME
+        UID
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+       }
+
+    entity "PORTFOLIOS" as portfolios {
+        + PORTFOLIO_ID [PK]
+        --
+        # USER_ID [FK]
+        --
+        PORTFOLIO_NAME
+        PORTFOLIO_URL
+        REPOSITORY_URL
+        PORTFOLIO_OVERVIEW
+        PORTFOLIO_APPEAL
+        NICE_COUNT
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "PORTFOLIOS_IMAGES" as portfolios_images {
+        + IMAGE_ID [PK]
+        --
+        # PORTFOLIO_ID [FK]
+        --
+        PORTFOLIO_IMAGE
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "PORTFOLIOS_SKILLS" as portfolios_skills {
+        + SKILL_ID [PK]
+        --
+        # SKILL_CD [FK]
+        # PORTFOLIO_ID [FK]
+        --
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "SKILLS_MASTERS" as skills_masters {
+        + SKILL_CD [PK]
+        --
+        SKILL_NAME
+        SKILL_CATEGORY
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "SKILLS_CATEGORIES" as skills_categories {
+        + CATEGORY_ID [PK]
+        --
+        CATEGORY_NAME
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+   entity "PORTFOLIOS_NICES" as portfolios_nices {
+        + NICE_ID [PK]
+        --
+        # USER_ID [FK]
+        # PORTFOLIO_ID [FK]
+        --
+        INSERT_DATA 
+    }
+}
+
+users --right--o{ portfolios
+users -down-o{ portfolios_nices
+portfolios --o{ portfolios_nices
+portfolios -down-|{ portfolios_images
+portfolios -right-|{ portfolios_skills
+portfolios_skills }o-down- skills_masters
+skills_masters }o-right- skills_categories
+
+@enduml
