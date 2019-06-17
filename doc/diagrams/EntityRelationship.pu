@@ -1,11 +1,6 @@
-## ER図
-- PlantUMLを使用してER図を作成しています。
-- ブラウザから図を確認する場合は、chromeの拡張機能 [Pegmatite](https://chrome.google.com/webstore/search/Pegmatite) をインストールしてください。
+@startuml EntityRelationship
 
-```uml
-@startuml
-
-package "MySQL" as target_system <<Database>> {
+package "database(MySQL)" as target_system <<Database>> {
 
     entity "USERS" as users {
         + USER_ID [PK]
@@ -26,7 +21,7 @@ package "MySQL" as target_system <<Database>> {
         PORTFOLIO_URL
         REPOSITORY_URL
         PORTFOLIO_OVERVIEW
-        APPEAL_POINT
+        PORTFOLIO_APPEAL
         NICE_COUNT
         INSERT_DATA
         UPDATE_DATE
@@ -64,12 +59,32 @@ package "MySQL" as target_system <<Database>> {
         UPDATE_DATE
         DELETE_FLAG
     }
+
+    entity "SKILLS_CATEGORIES" as skills_categories {
+        + CATEGORY_ID [PK]
+        --
+        CATEGORY_NAME
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+   entity "PORTFOLIOS_NICES" as portfolios_nices {
+        + NICE_ID [PK]
+        --
+        # USER_ID [FK]
+        --
+        PORTFOLIO_ID
+        INSERT_DATA 
+    }
 }
 
-portfolios }|-left- users
+users --right--|{ portfolios
+users -down-o{ portfolios_nices
+portfolios --o{ portfolios_nices
 portfolios -down-|{ portfolios_images
 portfolios -right-|{ portfolios_skills
-portfolios_skills -down- skills_masters
+portfolios_skills }o-down- skills_masters
+skills_masters }o-right- skills_categories
 
 @enduml
-```
