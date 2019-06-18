@@ -1,5 +1,19 @@
 # pflist-backend
 
+## ディレクトリ構成
+```bash
+$ tree --dirsfirst -L 1
+.
+├── app      # ソースファイル
+├── configs  # 環境設定
+├── data     # DBデータの保管場所
+├── doc      # 各種ドキュメント
+├── scripts  # セットアップスクリプト
+├── README.md
+├── docker-compose.yml
+└── swagger.yaml
+```
+
 ## 開発環境セットアップ
 
 ```bash
