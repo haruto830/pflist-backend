@@ -3,10 +3,29 @@ services:
   app:
     build: ./app
     container_name: app
+    depends_on:
+      - db
     volumes:
       - ./app/:/go/src/app
     ports:
       - "8080:8080"
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: pflist
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./configs/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./scripts/mysql_init:/docker-entrypoint-initdb.d
+      - ./data/mysql_data:/var/lib/mysql
+
 
   swagger-editor:
     image: swaggerapi/swagger-editor
