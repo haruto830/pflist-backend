@@ -1,0 +1,20 @@
+@startuml getList
+
+autonumber "[0]"
+hide footbox
+
+participant "フロント" as front
+participant "API" as api
+participant "RDS" as RDS
+participant "S3" as s3
+
+|||
+front -> api : GET /list
+
+api -> RDS : データ取得
+
+front <-- api : 200を返す
+
+front -> s3 : 画像データ取得
+
+@enduml
