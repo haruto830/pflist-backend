@@ -1,0 +1,382 @@
+swagger: '2.0'
+info:
+  description: 'pflistに関するAPIです。'
+  version: 1.0.0
+  title: pflist
+host: localhost
+basePath: /api/v1
+tags:
+  - name: List
+    description: ポートフォリオデータ
+paths:
+  /list:
+    get:
+      summary: "ポートフォリオ一覧取得API"
+      description: "全ポートフォリオ情報を取得します"
+      tags:
+        - List
+      parameters: []
+      responses:
+        200:
+          description: "成功時のレスポンス"
+          schema:
+            properties:
+              portfolios:
+                description: "ポートフォリオ情報"
+                type: array
+                items:
+                  type: "object"
+                  properties:
+                    portfilioId:
+                      description: "ポートフォリオID"
+                      type: "integer"
+                      example: 1
+                    img:
+                      type: string
+                      example: https://s3-ap-northeast-1.amazonaws.com/image1.png
+                      description: "画像URL"
+                    title:
+                      type: "string"
+                      example: "私のポートフォリオ"
+                      description: "タイトル"
+                    overview:
+                      type: "string"
+                      example: "概要です"
+                      description: "ポートフォリオの概要"
+                    tag:
+                      type: array
+                      items:
+                        type: string
+                      example:
+                        - Vue
+                        - TypeScript
+                        - Go
+                    niceCount:
+                      type: "integer"
+                      example: "6"
+                      description: "いいね総数"
+                    userAccount:
+                      type: "string"
+                      example: "@accountName"
+                      description: "ユーザーアカウント"
+                    userIcon:
+                      type: "string"
+                      example: "https://s3-ap-northeast-1.amazonaws.com/icon.png"
+                      description: "ユーザーアイコン"
+                    insertDate:
+                      type: "string"
+                      example: "2019-06-24 00:59:27"
+                      description: "登録日付"
+                    updateDate:
+                      type: "string"
+                      example: "2019-06-24 00:59:31"
+                      description: "更新日時"
+
+    post:
+        summary: "ポートフォリオの新規登録API"
+        description: "ポートフォリオを新規登録します"
+        tags:
+          - List
+        parameters:
+        - name: "idToken"
+          in: "header"
+          description: "FirebaseのトークンID"
+          required: true
+          type: "string"
+        
+        - in: "body"
+          name: "body"
+          description: "ポートフォリオの更新情報"
+          required: true
+          schema:
+                type: "object"
+                properties:
+                  img:
+                    description: "画像URL"
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - https://s3-ap-northeast-1.amazonaws.com/image1.png
+                      - https://s3-ap-northeast-1.amazonaws.com/image2.png
+                      - https://s3-ap-northeast-1.amazonaws.com/image3.png
+                  title:
+                    description: "ポートフォリオのタイトル"
+                    type: "string"
+                    example: "私のポートフォリオ"
+                  overview:
+                    description: "ポートフォリオの概要"      
+                    type: "string"
+                    example: "概要です"
+                  detail:
+                    description: "ポートフォリオの詳細"      
+                    type: "string"
+                    example: "詳細です"
+                  skills:
+                     $ref: "#/definitions/Skill"
+                  url:
+                    description: "関連URL"
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        github:
+                          type: "string"
+                          example: "https://github.com/haruto830/pflist-backend"
+                          description: "GithubのリポジトリURL"
+                        portfolio:
+                          type: "string"
+                          example: "https://pflist.com"
+                          description: "ポートフォリオのURL"
+                        blog:
+                          type: "string"
+                          example: "https://qiita.com/haruto830/"
+                          description: "技術ブログURL"
+                  niceCount:
+                    description: "いいね総数"
+                    type: "integer"
+                    example: "6"
+                  userAccount:
+                    description: "ユーザーアカウント"
+                    type: "string"
+                    example: "@accountName"
+                  userIcon:
+                    description: "ユーザーアイコン"
+                    type: "string"
+                    example: "https://s3-ap-northeast-1.amazonaws.com/image..."
+                  status:
+                    description: "各種ステータス"
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        term:
+                          type: "string"
+                          example: "4"
+                          description: "制作期間（月）"
+                        state:
+                          type: "string"
+                          example: "開発中"
+                          description: "制作の進捗状況"
+                        insertDate:
+                          type: "string"
+                          example: "2019-06-24 00:59:27"
+                          description: "登録日付"
+                        updateDate:
+                          type: "string"
+                          example: "2019-06-24 00:59:31"
+                          description: "更新日時"
+                  deleteFlag:
+                    description: "削除フラグ"
+                    type: "integer"
+                    example: "0"
+
+        responses:
+          200:
+            description: "成功時のレスポンス"
+            schema:
+              $ref: "#/definitions/PortfolioInfo"
+ 
+  /list/{portfolioId}:
+    get:
+      summary: "ポートフォリオの詳細取得API"
+      description: "指定したポートフォリオIDの詳細を取得します"
+      tags:
+        - List
+      parameters:
+        - name: "portfolioId"
+          in: "path"
+          description: "取得したいポートフォリオのID"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "成功時のレスポンス"
+          schema:
+            $ref: "#/definitions/PortfolioInfo"
+
+    put:
+      summary: "ポートフォリオの更新API"
+      description: "指定したポートフォリオIDの詳細を更新します"
+      tags:
+        - List
+      parameters:
+        - name: "idToken"
+          in: "header"
+          description: "FirebaseのトークンID"
+          required: true
+          type: "string"
+        
+        - name: "portfolioId"
+          in: "path"
+          description: "取得したいポートフォリオのID"
+          required: true
+          type: "string"
+        
+        - in: "body"
+          name: "body"
+          description: "ポートフォリオの更新情報"
+          required: true
+          schema:
+            $ref: "#/definitions/PortfolioInfo"
+          
+      responses:
+        200:
+          description: "成功時のレスポンス"
+          schema:
+            $ref: "#/definitions/PortfolioInfo"
+        401:
+          description: "認証エラー"
+
+    delete:
+      summary: "ポートフォリオの削除API"
+      description: "指定したポートフォリオIDの情報を論理削除します"
+      tags:
+        - List
+      parameters:
+        - name: "idToken"
+          in: "header"
+          description: "FirebaseのトークンID"
+          required: true
+          type: "string"
+          
+        - name: "portfolioId"
+          in: "path"
+          description: "削除するポートフォリオのID"
+          required: true
+          type: "string"
+          
+      responses:
+        200:
+          description: "成功時のレスポンス"
+          schema:
+            $ref: "#/definitions/PortfolioInfo"
+        401:
+          description: "認証エラー"
+  
+  /list/{portfolioId}/nice:
+    put:
+      summary: "いいね情報の更新API"
+      description: "指定したポートフォリオIDのいいね情報を更新します"
+      tags:
+        - List
+      parameters:
+        - name: "idToken"
+          in: "header"
+          description: "FirebaseのトークンID"
+          required: true
+          type: "string"
+          
+        - name: "portfolioId"
+          in: "path"
+          description: "取得したいポートフォリオのID"
+          required: true
+          type: "string"
+
+      responses:
+        200:
+          description: "成功時のレスポンス"
+          schema:
+            properties:
+              niceCount:
+                description: "いいね総数"
+                type: "integer"
+                example: "6"
+            
+        401:
+          description: "認証エラー"
+ 
+definitions:
+  PortfolioInfo: 
+    type: "object"
+    properties:
+      portfilioId:
+        description: "ポートフォリオID"
+        type: "integer"
+        example: 1
+      img:
+        description: "画像URL"
+        type: array
+        items:
+          type: string
+        example:
+          - https://s3-ap-northeast-1.amazonaws.com/image1.png
+          - https://s3-ap-northeast-1.amazonaws.com/image2.png
+          - https://s3-ap-northeast-1.amazonaws.com/image3.png
+      title:
+        description: "ポートフォリオのタイトル"
+        type: "string"
+        example: "私のポートフォリオ"
+      overview:
+        description: "ポートフォリオの概要"      
+        type: "string"
+        example: "概要です"
+      detail:
+        description: "ポートフォリオの詳細"      
+        type: "string"
+        example: "詳細です"
+      skills:
+         $ref: "#/definitions/Skill"
+      url:
+        description: "関連URL"
+        type: array
+        items:
+          type: object
+          properties:
+            github:
+              type: "string"
+              example: "https://github.com/haruto830/pflist-backend"
+              description: "GithubのリポジトリURL"
+            portfolio:
+              type: "string"
+              example: "https://pflist.com"
+              description: "ポートフォリオのURL"
+            blog:
+              type: "string"
+              example: "https://qiita.com/haruto830/"
+              description: "技術ブログURL"
+      niceCount:
+        description: "いいね総数"
+        type: "integer"
+        example: "6"
+      userAccount:
+        description: "ユーザーアカウント"
+        type: "string"
+        example: "@accountName"
+      userIcon:
+        description: "ユーザーアイコン"
+        type: "string"
+        example: "https://s3-ap-northeast-1.amazonaws.com/image..."
+      status:
+        description: "各種ステータス"
+        type: array
+        items:
+          type: object
+          properties:
+            term:
+              type: "string"
+              example: "4"
+              description: "制作期間（月）"
+            state:
+              type: "string"
+              example: "開発中"
+              description: "制作の進捗状況"
+            insertDate:
+              type: "string"
+              example: "2019-06-24 00:59:27"
+              description: "登録日付"
+            updateDate:
+              type: "string"
+              example: "2019-06-24 00:59:31"
+              description: "更新日時"
+
+  Skill: 
+    description: "使用技術（検討中）"
+    type: array
+    items:
+      type: string
+    example:
+      - Vue
+      - TypeScript
+      - Go
+    
