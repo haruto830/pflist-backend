@@ -27,11 +27,11 @@ paths:
                 items:
                   type: "object"
                   properties:
-                    portfilioId:
+                    id:
                       description: "ポートフォリオID"
                       type: "integer"
                       example: 1
-                    img:
+                    image:
                       type: string
                       example: https://s3-ap-northeast-1.amazonaws.com/image1.png
                       description: "画像URL"
@@ -43,7 +43,7 @@ paths:
                       type: "string"
                       example: "概要です"
                       description: "ポートフォリオの概要"
-                    tag:
+                    tags:
                       type: array
                       items:
                         type: string
