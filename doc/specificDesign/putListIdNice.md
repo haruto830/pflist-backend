@@ -17,8 +17,8 @@ http://localhost:8082/#/List/put_list__portfolioId__nice
   - 【型チェック】portfolioIdが数字出ない場合はエラー
 - DBのデータ更新
   - PORTFOLIOS_NICEテーブルの更新
-    - PORTFOLIOS_NICEにレコードがある場合は、insertする
-    - PORTFOLIOS_NICEにレコードがない場合は、1件の場合はdeleteする
+    - PORTFOLIOS_NICEにレコードがある場合は、deleteする
+    - PORTFOLIOS_NICEにレコードがない場合は、insertする
   - PORTFOLIOSテーブルの更新
     - PORTFOLIOS_NICEにinsertした場合は、NICE_COUNTに1を加算する
     - PORTFOLIOS_NICEにdeleteした場合は、NICE_COUNTに1を減算する
