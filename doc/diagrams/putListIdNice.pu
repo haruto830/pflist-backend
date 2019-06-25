@@ -1,0 +1,27 @@
+@startuml putListIdNice
+
+autonumber "[0]"
+hide footbox
+
+participant "フロント" as front
+participant "API" as api
+participant "RDS" as RDS
+participant "Firebase" as firebase
+
+|||
+front -> api : PUT /list/{portfolioId}/nice
+
+opt 認証チェック
+  api -> firebase: Tokenの確認
+  front <-- api : UNAUTHORIZED(401)
+end
+
+opt バリデーションチェック
+  front <-- api : Bad Request(400)
+end
+
+api -> RDS : データ更新
+
+front <-- api : 200を返す
+
+@enduml
