@@ -86,12 +86,12 @@ paths:
         
         - in: "body"
           name: "body"
-          description: "ポートフォリオの更新情報"
+          description: "ポートフォリオの登録情報"
           required: true
           schema:
                 type: "object"
                 properties:
-                  img:
+                  image:
                     description: "画像URL"
                     type: array
                     items:
@@ -132,10 +132,6 @@ paths:
                           type: "string"
                           example: "https://qiita.com/haruto830/"
                           description: "技術ブログURL"
-                  niceCount:
-                    description: "いいね総数"
-                    type: "integer"
-                    example: "6"
                   userAccount:
                     description: "ユーザーアカウント"
                     type: "string"
@@ -166,16 +162,16 @@ paths:
                           type: "string"
                           example: "2019-06-24 00:59:31"
                           description: "更新日時"
-                  deleteFlag:
-                    description: "削除フラグ"
-                    type: "integer"
-                    example: "0"
 
         responses:
           200:
             description: "成功時のレスポンス"
             schema:
               $ref: "#/definitions/PortfolioInfo"
+          400:
+            description: "バリデーションエラー"
+          401:
+            description: "認証エラー"
  
   /list/{portfolioId}:
     get:
