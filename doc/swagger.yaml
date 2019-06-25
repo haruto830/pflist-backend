@@ -292,11 +292,11 @@ definitions:
   PortfolioInfo: 
     type: "object"
     properties:
-      portfilioId:
+      portfolioId:
         description: "ポートフォリオID"
         type: "integer"
         example: 1
-      img:
+      images:
         description: "画像URL"
         type: array
         items:
@@ -321,22 +321,20 @@ definitions:
          $ref: "#/definitions/Skill"
       url:
         description: "関連URL"
-        type: array
-        items:
-          type: object
-          properties:
-            github:
-              type: "string"
-              example: "https://github.com/haruto830/pflist-backend"
-              description: "GithubのリポジトリURL"
-            portfolio:
-              type: "string"
-              example: "https://pflist.com"
-              description: "ポートフォリオのURL"
-            blog:
-              type: "string"
-              example: "https://qiita.com/haruto830/"
-              description: "技術ブログURL"
+        type: object
+        properties:
+          github:
+            type: "string"
+            example: "https://github.com/haruto830/pflist-backend"
+            description: "GithubのリポジトリURL"
+          portfolio:
+            type: "string"
+            example: "https://pflist.com"
+            description: "ポートフォリオのURL"
+          blog:
+            type: "string"
+            example: "https://qiita.com/haruto830/"
+            description: "技術ブログURL"
       niceCount:
         description: "いいね総数"
         type: "integer"
@@ -351,26 +349,24 @@ definitions:
         example: "https://s3-ap-northeast-1.amazonaws.com/image..."
       status:
         description: "各種ステータス"
-        type: array
-        items:
-          type: object
-          properties:
-            term:
-              type: "string"
-              example: "4"
-              description: "制作期間（月）"
-            state:
-              type: "string"
-              example: "開発中"
-              description: "制作の進捗状況"
-            insertDate:
-              type: "string"
-              example: "2019-06-24 00:59:27"
-              description: "登録日付"
-            updateDate:
-              type: "string"
-              example: "2019-06-24 00:59:31"
-              description: "更新日時"
+        type: object
+        properties:
+          term:
+            type: "string"
+            example: "4"
+            description: "制作期間（月）"
+          state:
+            type: "string"
+            example: "開発中"
+            description: "制作の進捗状況"
+          insertDate:
+            type: "string"
+            example: "2019-06-24 00:59:27"
+            description: "登録日付"
+          updateDate:
+            type: "string"
+            example: "2019-06-24 00:59:31"
+            description: "更新日時"
 
   Skill: 
     description: "使用技術（検討中）"
