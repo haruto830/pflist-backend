@@ -91,7 +91,7 @@ paths:
           schema:
                 type: "object"
                 properties:
-                  image:
+                  images:
                     description: "画像URL"
                     type: array
                     items:
@@ -114,7 +114,7 @@ paths:
                     example: "詳細です"
                   skills:
                      $ref: "#/definitions/Skill"
-                  url:
+                  urls:
                     description: "関連URL"
                     type: array
                     items:
@@ -292,7 +292,7 @@ definitions:
         description: "ポートフォリオID"
         type: "integer"
         example: 1
-      img:
+      images:
         description: "画像URL"
         type: array
         items:
@@ -315,7 +315,7 @@ definitions:
         example: "詳細です"
       skills:
          $ref: "#/definitions/Skill"
-      url:
+      urls:
         description: "関連URL"
         type: array
         items:
