@@ -1,18 +1,38 @@
 # Post ListAPIの詳細設計書
 
 ## 概要
-ポートフォリオを登録するAPI
+ポートフォリオを新規登録するAPI
 
 ## シーケンス図
-plantUMLの画像path
+![postList](../diagrams/postList.png)
 
 ## API仕様書
-saggerのpath
+`http://localhost:8082/#/List/post_list`
 
 ## ワークフロー
-- バリデーション処理
-  - xxxのチェック
-  - yyyのチェック
-- DBから値を取得
-- データを加工する
-- レスポンスする
+- 認証チェック
+  - FirebaseにTokenを確認
+  - Tokenエラーの場合は401を返す
+
+- バリデーションチェック
+
+    |     項目     | 必須 | 文字数  |
+    | ------------ | ---- | ------- |
+    | image        | ○    | ×       |
+    | title        | ○    | <= 100  |
+    | overview     | ○    | <= 500  |
+    | detail       | ○    | <= 4000 |
+    | skills       | ○    | ×       |
+    | url          | ○    | ×       |
+    | userAccount  | ○    | ×       |
+    | userIcon     | ○    | ×       |
+    | status.term  | ×    | <= 3    |
+    | status.state | ○    | ×       |
+
+- S3に画像を保存
+    - 保存先パス：pflist-img/portfolio/
+    - ファイル名：{userAccount}_{UUID}
+
+- リクエストの各項目の内容を、DBにInsert
+
+- 200を返す
