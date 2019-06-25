@@ -27,7 +27,7 @@ paths:
                 items:
                   type: "object"
                   properties:
-                    id:
+                    portfolioId:
                       description: "ポートフォリオID"
                       type: "integer"
                       example: 1
@@ -283,6 +283,8 @@ paths:
                 type: "integer"
                 example: "6"
             
+        400:
+          description: "バリデーションエラー"
         401:
           description: "認証エラー"
  
