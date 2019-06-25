@@ -194,6 +194,8 @@ paths:
           description: "成功時のレスポンス"
           schema:
             $ref: "#/definitions/PortfolioInfo"
+        400:
+          description: "バリデーションエラー"
 
     put:
       summary: "ポートフォリオの更新API"
