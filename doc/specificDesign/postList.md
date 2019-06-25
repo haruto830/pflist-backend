@@ -16,18 +16,20 @@
 
 - バリデーションチェック
 
-    |     項目     | 必須 | 文字数  |
-    | ------------ | ---- | ------- |
-    | image        | ○    | ×       |
-    | title        | ○    | <= 100  |
-    | overview     | ○    | <= 500  |
-    | detail       | ○    | <= 4000 |
-    | skills       | ○    | ×       |
-    | url          | ○    | ×       |
-    | userAccount  | ○    | ×       |
-    | userIcon     | ○    | ×       |
-    | status.term  | ×    | <= 3    |
-    | status.state | ○    | ×       |
+    |      項目      | 必須 | 文字数  |
+    | -------------- | ---- | ------- |
+    | images         | ○    | ×       |
+    | title          | ○    | <= 100  |
+    | overview       | ○    | <= 500  |
+    | detail         | ○    | <= 4000 |
+    | skills         | ○    | ×       |
+    | urls.github    | ○    | ×       |
+    | urls.portfolio | ×    | ×       |
+    | urls.blog      | ×    | ×       |
+    | userAccount    | ○    | ×       |
+    | userIcon       | ○    | ×       |
+    | status.term    | ×    | <= 3    |
+    | status.state   | ○    | ×       |
 
 - S3に画像を保存
     - 保存先パス：pflist-img/portfolio/
