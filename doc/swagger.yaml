@@ -154,14 +154,6 @@ paths:
                           type: "string"
                           example: "開発中"
                           description: "制作の進捗状況"
-                        insertDate:
-                          type: "string"
-                          example: "2019-06-24 00:59:27"
-                          description: "登録日付"
-                        updateDate:
-                          type: "string"
-                          example: "2019-06-24 00:59:31"
-                          description: "更新日時"
 
         responses:
           200:
