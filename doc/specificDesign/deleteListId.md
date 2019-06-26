@@ -19,4 +19,5 @@ http://localhost:8082/#/List/delete_list__portfolioId_
   - portfolioIdとuserIdを条件として削除可能なportfolioがあるかを確認
     - 削除可能なportfolioがない場合は、404を返す
 - 指定したportfolioを論理削除する
+  - portfoliosテーブルのdelete_flagを1にする
 - 204を返す
