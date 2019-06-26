@@ -114,24 +114,22 @@ paths:
                     example: "詳細です"
                   skills:
                      $ref: "#/definitions/Skill"
-                  urls:
+                  url:
                     description: "関連URL"
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        github:
-                          type: "string"
-                          example: "https://github.com/haruto830/pflist-backend"
-                          description: "GithubのリポジトリURL"
-                        portfolio:
-                          type: "string"
-                          example: "https://pflist.com"
-                          description: "ポートフォリオのURL"
-                        blog:
-                          type: "string"
-                          example: "https://qiita.com/haruto830/"
-                          description: "技術ブログURL"
+                    type: object
+                    properties:
+                      github:
+                        type: "string"
+                        example: "https://github.com/haruto830/pflist-backend"
+                        description: "GithubのリポジトリURL"
+                      portfolio:
+                        type: "string"
+                        example: "https://pflist.com"
+                        description: "ポートフォリオのURL"
+                      blog:
+                        type: "string"
+                        example: "https://qiita.com/haruto830/"
+                        description: "技術ブログURL"
                   userAccount:
                     description: "ユーザーアカウント"
                     type: "string"
@@ -142,18 +140,16 @@ paths:
                     example: "https://s3-ap-northeast-1.amazonaws.com/image..."
                   status:
                     description: "各種ステータス"
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        term:
-                          type: "string"
-                          example: "4"
-                          description: "制作期間（月）"
-                        state:
-                          type: "string"
-                          example: "開発中"
-                          description: "制作の進捗状況"
+                    type: object
+                    properties:
+                      term:
+                        type: "string"
+                        example: "4"
+                        description: "制作期間（月）"
+                      state:
+                        type: "string"
+                        example: "開発中"
+                        description: "制作の進捗状況"
 
         responses:
           200:
@@ -309,7 +305,7 @@ definitions:
         example: "詳細です"
       skills:
          $ref: "#/definitions/Skill"
-      urls:
+      url:
         description: "関連URL"
         type: object
         properties:
