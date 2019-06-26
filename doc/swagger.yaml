@@ -233,12 +233,14 @@ paths:
           type: "string"
           
       responses:
-        200:
+        204:
           description: "成功時のレスポンス"
-          schema:
-            $ref: "#/definitions/PortfolioInfo"
+        400:
+          description: "バリデーションエラー"
         401:
           description: "認証エラー"
+        404:
+          description: "削除対象が存在しない"
   
   /list/{portfolioId}/nice:
     put:
