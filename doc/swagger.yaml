@@ -114,7 +114,7 @@ paths:
                     example: "詳細です"
                   skills:
                      $ref: "#/definitions/Skill"
-                  urls:
+                  url:
                     description: "関連URL"
                     type: object
                     properties:
@@ -130,7 +130,6 @@ paths:
                         type: "string"
                         example: "https://qiita.com/haruto830/"
                         description: "技術ブログURL"
-
                   userAccount:
                     description: "ユーザーアカウント"
                     type: "string"
@@ -306,7 +305,7 @@ definitions:
         example: "詳細です"
       skills:
          $ref: "#/definitions/Skill"
-      urls:
+      url:
         description: "関連URL"
         type: object
         properties:
