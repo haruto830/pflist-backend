@@ -211,8 +211,12 @@ paths:
           description: "成功時のレスポンス"
           schema:
             $ref: "#/definitions/PortfolioInfo"
+        400:
+          description: "バリデーションエラー"
         401:
           description: "認証エラー"
+        404:
+          description: "更新対象が存在しない"
 
     delete:
       summary: "ポートフォリオの削除API"
