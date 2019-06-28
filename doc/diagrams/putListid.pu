@@ -1,0 +1,34 @@
+@startuml putListid
+
+autonumber "[0]"
+hide footbox
+
+participant "フロント" as front
+participant "API" as api
+participant "Firebase" as firebase
+participant "S3" as s3
+participant "RDS" as RDS
+
+|||
+front -> api : put /list/{portfolioId}
+
+opt 認証チェック
+  api -> firebase: Tokenの確認
+  front <-- api : UNAUTHORIZED(401)
+end
+
+opt 更新対象チェック
+  front <-- api : Not Found(404)
+end
+
+opt バリデーションチェック
+  front <-- api : Bad Request(400)
+end
+
+api -> s3 : 画像更新
+
+api -> RDS : データ更新
+
+front <-- api : 200を返す
+
+@enduml
