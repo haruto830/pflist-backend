@@ -11,7 +11,7 @@ import (
 
 //sql and database info
 const (
-    Source   = "file://./sql/"
+    Source   = "file://."
     Database = "mysql://mysql:mysql@tcp(db:3306)/pflist"
 )
 
