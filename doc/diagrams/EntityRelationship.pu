@@ -55,8 +55,9 @@ package "database(MySQL)" as target_system <<Database>> {
     entity "SKILLS_MASTERS" as skills_masters {
         + SKILL_CD [PK]
         --
+        # SKILL_CATEGORY_ID [FK]
+        --
         SKILL_NAME
-        SKILL_CATEGORY
         INSERT_DATA
         UPDATE_DATE
         DELETE_FLAG
