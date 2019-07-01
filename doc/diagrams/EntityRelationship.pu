@@ -22,6 +22,8 @@ package "database(MySQL)" as target_system <<Database>> {
         REPOSITORY_URL
         PORTFOLIO_OVERVIEW
         PORTFOLIO_APPEAL
+        PORTFOLIO_TERM
+        PORTFOLIO_STATE
         NICE_COUNT
         INSERT_DATA
         UPDATE_DATE
@@ -61,9 +63,9 @@ package "database(MySQL)" as target_system <<Database>> {
     }
 
     entity "SKILLS_CATEGORIES" as skills_categories {
-        + CATEGORY_ID [PK]
+        + SKILL_CATEGORY_ID [PK]
         --
-        CATEGORY_NAME
+        SKILL_CATEGORY_NAME
         INSERT_DATA
         UPDATE_DATE
         DELETE_FLAG
@@ -77,14 +79,36 @@ package "database(MySQL)" as target_system <<Database>> {
         --
         INSERT_DATA 
     }
+
+        entity "PORTFOLIOS_URLS" as portfolios_urls {
+        + URL_ID [PK]
+        --
+        # PORTFOLIO_ID [FK]
+        # URL_CATEGORY_ID [FK]
+        --
+        URL
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
+    }
+
+    entity "URLS_CATEGORIES" as urls_categories {
+        + URL_CATEGORY_ID [PK]
+        --
+        URL_CATEGORY_NAME
+        INSERT_DATA
+        UPDATE_DATE
+        DELETE_FLAG
 }
 
 users --right--o{ portfolios
 users -down-o{ portfolios_nices
 portfolios --o{ portfolios_nices
 portfolios -down-|{ portfolios_images
-portfolios -right-|{ portfolios_skills
+portfolios -down-|{ portfolios_skills
 portfolios_skills }o-down- skills_masters
-skills_masters }o-right- skills_categories
+skills_masters }o-down- skills_categories
+portfolios --|{ portfolios_urls
+portfolios_urls }o-down- urls_categories
 
 @enduml
