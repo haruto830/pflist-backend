@@ -1,3 +1,5 @@
+drop table portfolios_urls;
+drop table urls_categories;
 drop table portfolios_skills;
 drop table skills_masters;
 drop table skills_categories;
