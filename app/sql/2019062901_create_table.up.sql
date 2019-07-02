@@ -17,10 +17,10 @@ create table if not exists `portfolios`
     `portfolio_id`       int auto_increment,
     `user_id`            int not null,
     `portfolio_name`     varchar(255) not null,
-    `portfolio_url`      varchar(255),
-    `repository_url`     varchar(255),
     `portfolio_overview` text,
     `portfolio_appeal`   text,
+    `portfolio_term`     int,
+    `portfolio_state`    varchar(255),
     `nice_count`         int,
     `insert_data`        datetime not null default current_timestamp,
     `update_date`        datetime not null default current_timestamp,
@@ -45,12 +45,12 @@ create table if not exists `portfolios_images`
 -- SKILLS_CATEGORIESテーブル
 create table if not exists `skills_categories`
 (
-    `category_id`    int auto_increment,
-    `category_name`  varchar(255) not null,
+    `skill_category_id`    int auto_increment,
+    `skill_category_name`  varchar(255) not null,
     `insert_data`    datetime not null default current_timestamp,
     `update_date`    datetime not null default current_timestamp,
     `delete_flag`    tinyint(1) not null default 0,
-    primary key (`category_id`)
+    primary key (`skill_category_id`)
 ) default charset=utf8 collate=utf8_bin;
 
 -- skills_mastersテーブル
@@ -58,12 +58,12 @@ create table if not exists `skills_masters`
 (
     `skill_cd`     int auto_increment,
     `skill_name`   varchar(255) not null,
-    `category_id`  int,
+    `skill_category_id` int,
     `insert_data`  datetime not null default current_timestamp,
     `update_date`  datetime not null default current_timestamp,
     `delete_flag`  tinyint(1) not null default 0,
     primary key (`skill_cd`),
-    foreign key (category_id) references skills_categories(category_id)
+    foreign key (skill_category_id) references skills_categories(skill_category_id)
 ) default charset=utf8 collate=utf8_bin;
 
 -- portfolios_skillsテーブル
@@ -90,4 +90,29 @@ create table if not exists `portfolios_nices`
     primary key (`nice_id`),
     foreign key (user_id) references users(user_id),
     foreign key (portfolio_id) references portfolios(portfolio_id)
+) default charset=utf8 collate=utf8_bin;
+
+-- urls_categoriesテーブル
+create table if not exists `urls_categories`
+(
+    `url_category_id`    int auto_increment,
+    `url_category_name`  varchar(255) not null,
+    `insert_data`    datetime not null default current_timestamp,
+    `update_date`    datetime not null default current_timestamp,
+    `delete_flag`    tinyint(1) not null default 0,
+    primary key (`url_category_id`)
+) default charset=utf8 collate=utf8_bin;
+
+-- portfolios_urlsテーブル
+create table if not exists `portfolios_urls`
+(
+    `url_id`       int auto_increment,
+    `portfolio_id` int not null,
+    `url_category_id`  int not null, 
+    `url` varchar(255) not null,
+    `insert_data`  datetime not null default current_timestamp,
+    `update_date`  datetime not null default current_timestamp,
+    `delete_flag`  tinyint(1) not null default 0,
+    primary key (`url_id`),
+    foreign key (url_category_id) references urls_categories(url_category_id)
 ) default charset=utf8 collate=utf8_bin;
