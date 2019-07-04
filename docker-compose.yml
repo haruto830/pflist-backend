@@ -24,7 +24,7 @@ services:
     volumes:
       - ./configs/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./data/mysql_data:/var/lib/mysql
-
+      - ./data/test_data/testdata.sql:/usr/share/mysql/testdata.sql
 
   swagger-editor:
     image: swaggerapi/swagger-editor
