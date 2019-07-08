@@ -16,7 +16,7 @@ create table if not exists `portfolios`
 (
     `portfolio_id`       int auto_increment,
     `user_id`            int not null,
-    `portfolio_name`     varchar(255) not null,
+    `portfolio_title`     varchar(255) not null,
     `portfolio_overview` text,
     `portfolio_appeal`   text,
     `portfolio_term`     int,
