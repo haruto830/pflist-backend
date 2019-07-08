@@ -3,7 +3,7 @@ insert into `users`(`user_name`,`uid`)
 values ('test1', '1234567890abcdefg');
 
 -- portfoliosテーブル
-insert into `portfolios`(`portfolio_id`,`user_id`, `portfolio_name`, `portfolio_overview`, `portfolio_appeal`,`portfolio_term`, `portfolio_state`, `nice_count`)
+insert into `portfolios`(`portfolio_id`,`user_id`, `portfolio_title`, `portfolio_overview`, `portfolio_appeal`,`portfolio_term`, `portfolio_state`, `nice_count`)
 values (1, 1 , 'テスト用ポートフォリオ１' , 'Webサービスです１' , '頑張りました１' , 1 , '未着手' , 0),
 (2, 1 , 'テスト用ポートフォリオ２' , 'Webサービスです２' , '頑張りました２' , 2 , '開発中' , 1),
 (3, 1 , 'テスト用ポートフォリオ３' , 'Webサービスです３' , '頑張りました３' , 3 , '完成' , 2),
