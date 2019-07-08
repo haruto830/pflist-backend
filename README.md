@@ -24,7 +24,7 @@ $ docker-compose exec -w /usr/share/mysql db sh -c "mysql -u root -p pflist < te
 
 |    サービス    |                  確認方法                  |
 | -------------- | ------------------------------------------ |
-| app (API)      | http://localhost:8000                      |
+| app (API)      | http://localhost:8080                      |
 | db (MySQL)     | IP: 127.0.0.1, port:3306, database: pflist |
 | Swagger UI     | http://localhost:8081                      |
 | Swagger Editor | http://localhost:8082                      |
